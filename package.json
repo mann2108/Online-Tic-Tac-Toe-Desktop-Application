@@ -1,0 +1,23 @@
+{
+  "name": "sample",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Mann Mehta",
+  "license": "ISC",
+  "dependencies": {
+    "@angular/fire": "^5.2.3",
+    "bootstrap": "^4.4.1",
+    "electron-google-oauth": "^2.0.0",
+    "firebase": "^7.6.1",
+    "jquery": "^3.4.1",
+    "node-notifier": "^6.0.0"
+  },
+  "devDependencies": {
+    "electron": "^7.1.7",
+    "electron-packager": "^14.1.1"
+  }
+}

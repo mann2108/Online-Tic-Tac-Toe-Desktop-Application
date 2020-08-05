@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Chat Room Application</title>
+    <link
+      rel="stylesheet"
+      href="./bootstrap_components/css/bootstrap.min.css"
+    />
+    <script>
+      function onLoadFun() {
+        document.getElementById("page1").style.display = "block";
+        document.getElementById("page2").style.display = "none";
+        document.getElementById("page3").style.display = "none";
+        document.getElementById("page4").style.display = "none";
+        document.getElementById("backButton").style.display = "none";
+      }
+
+      function createRoom() {
+        document.getElementById("page1").style.display = "none";
+        document.getElementById("page2").style.display = "block";
+        document.getElementById("page3").style.display = "none";
+        document.getElementById("page4").style.display = "none";
+        document.getElementById("backButton").style.display = "block";
+      }
+
+      function joinRoom() {
+        document.getElementById("page1").style.display = "none";
+        document.getElementById("page2").style.display = "none";
+        document.getElementById("page3").style.display = "block";
+        document.getElementById("page4").style.display = "none";
+        document.getElementById("backButton").style.display = "block";
+      }
+    </script>
+    <style>
+      body {
+        background-color: rgb(51, 9, 9);
+      }
+      #tableStyle {
+        margin-top: 10%;
+        color: white;
+      }
+      .common {
+        margin-top: 20%;
+      }
+      #note {
+        margin: 5%;
+      }
+    </style>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <!-- <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-database.js"></script> -->
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-database.js"></script>
+  </head>
+
+  <body onload="onLoadFun()">
+    <center style="margin-top: '3%';color:white;"><h3>TIC TAC TOE</h3></center>
+    <button
+      class="btn btn-danger"
+      style="float:right;display:none;"
+      id="backButton"
+      onclick="onLoadFun()"
+    >
+      BACK
+    </button>
+
+    <div id="page1" class="common">
+      <center>
+        <button class="btn btn-warning" onclick="createRoom()">
+          CREATE GAME ROOM
+        </button>
+        <button class="btn btn-primary" onclick="joinRoom()">
+          JOIN GAME ROOM
+        </button>
+      </center>
+    </div>
+    <div id="page2" class="common" style="display: none;">
+      <center>
+        <form onsubmit="return roomCreated()">
+          <input type="text" placeholder="Your Name" required id="user1" />
+          <input type="text" placeholder="Opponent Name" required id="user2" />
+          <button type="submit" class="btn btn-primary">
+            SUBMIT
+          </button>
+        </form>
+      </center>
+    </div>
+    <div id="page3" class="common" style="display: none;color:white;">
+      <center>
+        <h6 id="note2"></h6>
+        <form onsubmit="return roomJoined()">
+          <input
+            type="text"
+            placeholder="invitation code"
+            required
+            id="inviteCode"
+          />
+          <button type="submit" class="btn btn-primary">
+            SUBMIT
+          </button>
+        </form>
+      </center>
+    </div>
+    <div id="page4" class="common" style="display: none;">
+      
+      <center id="tableStyle">
+        <h6 id="note"></h6>
+        <table>
+          <tr>
+            <td>
+              <button
+                class="btn btn-warning"
+                onclick="onClickButton1()"
+                id="button1"
+              >Q</button>
+            </td>
+            <td>
+              <button
+                class="btn btn-warning"
+                onclick="onClickButton2()"
+                id="button2"
+              >Q</button>
+            </td>
+            <td>
+              <button
+                class="btn btn-warning"
+                onclick="onClickButton3()"
+                id="button3"
+              >Q</button>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <button
+                class="btn btn-warning"
+                onclick="onClickButton4()"
+                id="button4"
+              >Q</button>
+            </td>
+            <td>
+              <button
+                class="btn btn-warning"
+                onclick="onClickButton5()"
+                id="button5"
+              >Q</button>
+            </td>
+            <td>
+              <button
+                class="btn btn-warning"
+                onclick="onClickButton6()"
+                id="button6"
+              >Q</button>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <button
+                class="btn btn-warning"
+                onclick="onClickButton7()"
+                id="button7"
+              >Q</button>
+            </td>
+            <td>
+              <button
+                class="btn btn-warning"
+                onclick="onClickButton8()"
+                id="button8"
+              >Q</button>
+            </td>
+            <td>
+              <button
+                class="btn btn-warning"
+                onclick="onClickButton9()"
+                id="button9"
+              >Q</button>
+            </td>
+          </tr>
+        </table>
+        <button onclick="reset()" class="btn btn-primary">RESET</button>
+      </center>
+    </div>
+  </body>
+
+  <script src="./render.js"></script>
+</html>
